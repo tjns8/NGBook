@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item value="ComparableTimSort" key="selection"/>
+		<item value="mList" key="selection"/>
 		<list key="findhistory">
+			<item value="mList"/>
 			<item value="ComparableTimSort"/>
 			<item value="sort"/>
 			<item value="Sort"/>

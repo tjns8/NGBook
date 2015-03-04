@@ -1,7 +1,0 @@
-package com.sswork.ngbook;
-
-import android.view.View;
-
-public class Menu extends View{
-
-}

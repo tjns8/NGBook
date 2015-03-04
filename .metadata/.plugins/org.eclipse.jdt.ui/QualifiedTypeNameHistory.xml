@@ -5,4 +5,8 @@
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="com.jeremyfeinstein.slidingmenu.lib.SlidingMenu"/>
+<fullyQualifiedTypeName name="com.sswork.ngbook.R.id"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="android.widget.ListView"/>
+<fullyQualifiedTypeName name="com.sswork.ngbook.R.layout"/>
 </qualifiedTypeNameHistroy>
