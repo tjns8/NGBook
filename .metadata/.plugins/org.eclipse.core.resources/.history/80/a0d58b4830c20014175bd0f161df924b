@@ -1,0 +1,21 @@
+package com.sswork.ngbook;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+public class Menu extends LinearLayout {
+
+	public Menu(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		// TODO Auto-generated constructor stub
+	}
+
+	private void initView() {
+		LayoutInflater inflater = (LayoutInflater) getContext()
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater.inflate(R.layout.menu, this);
+	}
+}

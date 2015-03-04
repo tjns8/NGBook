@@ -1,0 +1,77 @@
+package com.sswork.ngbook;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.mobeta.android.dslv.DragSortListView;
+
+public class BookList extends ListView {
+
+    private ArrayAdapter<String> adapter;
+
+    private String[] array;
+    private ArrayList<String> list;
+
+    private DragSortListView.DropListener onDrop =
+        new DragSortListView.DropListener() {
+            @Override
+            public void drop(int from, int to) {
+                String item=adapter.getItem(from);
+
+                adapter.notifyDataSetChanged();
+                adapter.remove(item);
+                adapter.insert(item, to);
+            }
+        };
+
+    private DragSortListView.RemoveListener onRemove = 
+        new DragSortListView.RemoveListener() {
+            @Override
+            public void remove(int which) {
+                adapter.remove(adapter.getItem(which));
+            }
+        };
+
+    private DragSortListView.DragScrollProfile ssProfile =
+        new DragSortListView.DragScrollProfile() {
+            @Override
+            public float getSpeed(float w, long t) {
+                if (w > 0.8f) {
+                    // Traverse all views in a millisecond
+                    return ((float) adapter.getCount()) / 0.001f;
+                } else {
+                    return 10.0f * w;
+                }
+            }
+        };
+
+	public BookList(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		// TODO Auto-generated constructor stub
+		initView();
+	}
+
+	public BookList(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+		initView();
+	}
+
+	public BookList(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		// TODO Auto-generated constructor stub
+		initView();
+	}
+
+	private void initView() {
+		LayoutInflater inflater = (LayoutInflater) getContext()
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater.inflate(R.layout.book_list, this);
+	}
+	
+}

@@ -1,0 +1,58 @@
+package com.sswork.ngbook;
+
+import android.annotation.SuppressLint;
+import android.app.Fragment;
+import android.widget.ListView;
+
+import com.mobeta.android.dslv.DragSortListView;
+
+@SuppressLint("NewApi")
+public class BookList extends Fragment {
+
+	private ListView listview=null;
+	
+	private BookInfoAdapter adapter;
+
+
+	private DragSortListView.DropListener onDrop = new DragSortListView.DropListener() {
+		@Override
+		public void drop(int from, int to) {
+//			String item = adapter.getItem(from);
+//
+//			adapter.notifyDataSetChanged();
+//			adapter.remove(item);
+//			adapter.insert(item, to);
+		}
+	};
+
+	private DragSortListView.RemoveListener onRemove = new DragSortListView.RemoveListener() {
+		@Override
+		public void remove(int which) {
+//			adapter.remove(adapter.getItem(which));
+		}
+	};
+
+	private DragSortListView.DragScrollProfile ssProfile = new DragSortListView.DragScrollProfile() {
+		@Override
+		public float getSpeed(float w, long t) {
+			if (w > 0.8f) {
+				// Traverse all views in a millisecond
+				return ((float) adapter.getCount()) / 0.001f;
+			} else {
+				return 10.0f * w;
+			}
+		}
+	};
+
+
+	private void initView() {
+		listview=new ListView(getActivity());
+		DragSortListView lv = (DragSortListView) listview;
+
+		lv.setDropListener(onDrop);
+		lv.setRemoveListener(onRemove);
+		lv.setDragScrollProfile(ssProfile);
+		adapter=new BookInfoAdapter();
+	}
+
+}
