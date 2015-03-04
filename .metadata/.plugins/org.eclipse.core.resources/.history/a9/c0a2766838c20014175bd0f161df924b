@@ -1,7 +1,0 @@
-package com.sswork.ngbook;
-
-import android.widget.BaseAdapter;
-
-public class BookInfoAdapter extends BaseAdapter {
-
-}
