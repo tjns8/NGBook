@@ -25,11 +25,10 @@ public class BookList extends ListFragment {
 		@Override
 		public void drop(int from, int to) {
 			printf("drop");
-			// String item = adapter.getItem(from);
-			//
-			// adapter.notifyDataSetChanged();
-			// adapter.remove(item);
-			// adapter.insert(item, to);
+			Object item = adapter.getItem(from);
+			adapter.notifyDataSetChanged();
+			adapter.remove(item);
+			adapter.insert(item, to);
 		}
 	};
 
@@ -37,7 +36,7 @@ public class BookList extends ListFragment {
 		@Override
 		public void remove(int which) {
 			printf("remove");
-			// adapter.remove(adapter.getItem(which));
+			adapter.remove(adapter.getItem(which));
 		}
 	};
 
@@ -74,7 +73,8 @@ public class BookList extends ListFragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		printf("on create view");
-		View v= (DragSortListView) inflater.inflate(R.layout.book_list, container, false);
+		View v = (DragSortListView) inflater.inflate(R.layout.book_list,
+				container, false);
 		return v;
 	}
 
@@ -87,7 +87,7 @@ public class BookList extends ListFragment {
 			dslv.setDropListener(onDrop);
 			dslv.setRemoveListener(onRemove);
 			dslv.setDragScrollProfile(ssProfile);
-		}else{
+		} else {
 			printf("lv is null");
 		}
 	}

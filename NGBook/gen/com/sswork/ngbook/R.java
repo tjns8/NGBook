@@ -1204,9 +1204,9 @@ containing a value of this type.
         public static final int vulture=0x7f020081;
     }
     public static final class id {
-        public static final int ButtonHelp=0x7f050046;
-        public static final int ButtonOpen=0x7f050045;
-        public static final int LinearLayout1=0x7f050044;
+        public static final int ButtonHelp=0x7f050048;
+        public static final int ButtonOpen=0x7f050047;
+        public static final int LinearLayout1=0x7f050046;
         public static final int abs__action_bar=0x7f05002d;
         public static final int abs__action_bar_container=0x7f05002c;
         public static final int abs__action_bar_subtitle=0x7f05001e;
@@ -1246,17 +1246,19 @@ containing a value of this type.
         public static final int abs__textButton=0x7f050020;
         public static final int abs__title=0x7f050028;
         public static final int abs__up=0x7f050010;
-        public static final int book_icon=0x7f05003f;
-        public static final int book_name=0x7f050040;
-        public static final int book_record=0x7f050042;
-        public static final int book_time=0x7f050041;
+        public static final int book_icon=0x7f050040;
+        public static final int book_info=0x7f05003f;
+        public static final int book_move=0x7f050044;
+        public static final int book_name=0x7f050041;
+        public static final int book_record=0x7f050043;
+        public static final int book_time=0x7f050042;
         public static final int clickRemove=0x7f050000;
         public static final int click_remove=0x7f05001c;
         public static final int disableHome=0x7f05000e;
         public static final int drag_handle=0x7f05001b;
         public static final int edit_query=0x7f050033;
         public static final int flingRemove=0x7f050001;
-        public static final int frame_layout_main=0x7f050043;
+        public static final int frame_layout_main=0x7f050045;
         public static final int fullscreen=0x7f050018;
         public static final int homeAsUp=0x7f05000b;
         public static final int left=0x7f050015;
@@ -1272,7 +1274,7 @@ containing a value of this type.
         public static final int showCustom=0x7f05000d;
         public static final int showHome=0x7f05000a;
         public static final int showTitle=0x7f05000c;
-        public static final int slidingmenumain=0x7f050047;
+        public static final int slidingmenumain=0x7f050049;
         public static final int tabMode=0x7f050008;
         public static final int useLogo=0x7f050009;
         public static final int wrap_content=0x7f050005;

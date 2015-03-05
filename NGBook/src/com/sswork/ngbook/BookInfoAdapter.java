@@ -15,6 +15,17 @@ public class BookInfoAdapter extends BaseAdapter {
 	public BookInfoAdapter(Context context) {
 		// TODO Auto-generated constructor stub
 		albis=new ArrayList<BookInfo>();
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
 		this.context=context;
 	}
 	@Override
@@ -39,13 +50,21 @@ public class BookInfoAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		if(null==convertView){
-			convertView=LayoutInflater.from(context).inflate(R.layout.book_info_view, parent);
+			convertView=LayoutInflater.from(context).inflate(R.layout.book_info_view, null);
 			BookInfo bi=albis.get(position);
 			((TextView)convertView.findViewById(R.id.book_name)).setText(bi.name);
 			((TextView)convertView.findViewById(R.id.book_time)).setText(bi.lastTime);
 			((TextView)convertView.findViewById(R.id.book_record)).setText(bi.readingRecord);
 		}
 		return convertView;
+	}
+	public void remove(Object item) {
+		// TODO Auto-generated method stub
+			albis.remove(item);
+	}
+	public void insert(Object item, int to) {
+		// TODO Auto-generated method stub
+		albis.add(to, (BookInfo)item);
 	}
 
 }
