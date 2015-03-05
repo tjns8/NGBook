@@ -2,24 +2,27 @@ package com.sswork.ngbook;
 
 import android.annotation.SuppressLint;
 import android.app.ListFragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.mobeta.android.dslv.DragSortListView;
 
-@SuppressLint("NewApi")
+@SuppressLint({ "NewApi", "ValidFragment" })
 public class BookList extends ListFragment {
 	static void printf(String string) {
 		Log.i("booklist", string);
 	}
 
 	private ListView listview = null;
-
-	private BookInfoAdapter adapter;
+	private BookInfoAdapter adapter=null;
 
 	private DragSortListView.DropListener onDrop = new DragSortListView.DropListener() {
 		@Override
@@ -87,6 +90,17 @@ public class BookList extends ListFragment {
 			dslv.setDropListener(onDrop);
 			dslv.setRemoveListener(onRemove);
 			dslv.setDragScrollProfile(ssProfile);
+			dslv.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					// TODO Auto-generated method stub
+					Context context=getActivity();
+					Intent intent=new Intent(context, BookView.class);
+					context.startActivity(intent);
+				}
+			});
 		} else {
 			printf("lv is null");
 		}
