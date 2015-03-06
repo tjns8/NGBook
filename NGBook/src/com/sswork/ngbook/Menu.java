@@ -8,6 +8,10 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Handler.Callback;
+import android.os.Looper;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,12 +20,12 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Menu extends LinearLayout implements OnClickListener {
+public class Menu extends LinearLayout implements OnClickListener{
 	private static final String TAG = "FileChooserExampleActivity";
 
 	private static final int REQUEST_CODE = 6384; // onActivityResult request
 													// code
-
+private Handler handler=null;
 	@SuppressLint("NewApi")
 	public Menu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -47,6 +51,7 @@ public class Menu extends LinearLayout implements OnClickListener {
 		inflater.inflate(R.layout.menu, this);
 		findViewById(R.id.ButtonHelp).setOnClickListener(this);
 		findViewById(R.id.ButtonOpen).setOnClickListener(this);
+		handler=new Handler(Looper.getMainLooper());
 	}
 
 	@Override
@@ -90,6 +95,7 @@ public class Menu extends LinearLayout implements OnClickListener {
 								.getPath(getContext(), uri);
 						Toast.makeText(getContext(), "File Selected: " + path,
 								Toast.LENGTH_LONG).show();
+						handler.sendMessage(handler.obtainMessage(11, 0, 0, path));
 					} catch (Exception e) {
 						Log.e("FileSelectorTestActivity", "File select error",
 								e);
@@ -99,5 +105,5 @@ public class Menu extends LinearLayout implements OnClickListener {
 			break;
 		}
 	}
-
+	
 }
