@@ -67,7 +67,7 @@ public class BookList extends ListFragment {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		printf("on create");
-		adapter = new BookInfoAdapter(getActivity());
+		adapter=BookInfoAdapter.getBookInfoAdapter(getActivity());
 		setListAdapter(adapter);
 	}
 

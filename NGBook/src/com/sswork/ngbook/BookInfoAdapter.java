@@ -3,24 +3,35 @@ package com.sswork.ngbook;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.os.Handler;
 import android.os.Handler.Callback;
+import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class BookInfoAdapter extends BaseAdapter implements Callback{
-	ArrayList<BookInfo> albis=null;
-	Context context=null;
-	public BookInfoAdapter(Context context) {
-		// TODO Auto-generated constructor stub
-		albis=new ArrayList<BookInfo>();
-		albis.add(new BookInfo());
-		albis.add(new BookInfo());
-		this.context=context;
+public class BookInfoAdapter extends BaseAdapter {
+	ArrayList<BookInfo> albis = null;
+	Context context = null;
+	static BookInfoAdapter bia=null;
+	public static BookInfoAdapter getBookInfoAdapter(Context context){
+		if(null==bia){
+			bia=new BookInfoAdapter(context);
+		}
+		return bia;
 	}
+	private BookInfoAdapter(Context context) {
+		// TODO Auto-generated constructor stub
+		albis = new ArrayList<BookInfo>();
+		albis.add(new BookInfo());
+		albis.add(new BookInfo());
+		this.context = context;
+	}
+
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
@@ -42,32 +53,37 @@ public class BookInfoAdapter extends BaseAdapter implements Callback{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		if(null==convertView){
-			convertView=LayoutInflater.from(context).inflate(R.layout.book_info_view, null);
-			BookInfo bi=albis.get(position);
-			((TextView)convertView.findViewById(R.id.book_name)).setText(bi.name);
-			((TextView)convertView.findViewById(R.id.book_time)).setText(bi.lastTime);
-			((TextView)convertView.findViewById(R.id.book_record)).setText(bi.record);
+		if (null == convertView) {
+			convertView = LayoutInflater.from(context).inflate(
+					R.layout.book_info_view, null);
+			BookInfo bi = albis.get(position);
+			((TextView) convertView.findViewById(R.id.book_name))
+					.setText(bi.name);
+			((TextView) convertView.findViewById(R.id.book_time))
+					.setText(bi.lastTime);
+			((TextView) convertView.findViewById(R.id.book_record))
+					.setText(bi.record);
 		}
 		return convertView;
 	}
+
 	public void remove(Object item) {
 		// TODO Auto-generated method stub
-			albis.remove(item);
+		albis.remove(item);
+		notifyDataSetChanged();
 	}
+
 	public void insert(Object item, int to) {
 		// TODO Auto-generated method stub
-		albis.add(to, (BookInfo)item);
+		albis.add(to, (BookInfo) item);
+		notifyDataSetChanged();
 	}
-	@Override
-	public boolean handleMessage(Message msg) {
-		// TODO Auto-generated method stub
-		if(msg.what==11){
-			BookInfo bookInfo=new BookInfo();
-			bookInfo.path=(String) msg.obj;
-			
-		}
-		return false;
+
+	public void addNewBookInfo(String path) {
+		Log.i("bia", "add new bi");
+		BookInfo bookInfo = new BookInfo(path);
+		albis.add(bookInfo);
+		notifyDataSetChanged();
 	}
 
 }

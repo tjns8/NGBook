@@ -20,7 +20,7 @@ public BookInfo(String path){
 	this.path=new String(path);
 	lastTime=Time.getCurrentTimezone();
 	record="0";
-	String ps[]=path.split("\\");
+	String ps[]=path.split("/");
 	name=ps[ps.length-1];
 }
 public BookInfo(Record record){
