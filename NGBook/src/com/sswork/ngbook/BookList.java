@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.mobeta.android.dslv.DragSortListView;
+import com.sswork.ngbook.R.bool;
 
 @SuppressLint({ "NewApi", "ValidFragment" })
 public class BookList extends ListFragment {
@@ -97,7 +98,10 @@ public class BookList extends ListFragment {
 						int position, long id) {
 					// TODO Auto-generated method stub
 					Context context=getActivity();
+					BookInfo bi=(BookInfo) BookInfoAdapter.getBookInfoAdapter(context).getItem(position);
 					Intent intent=new Intent(context, BookView.class);
+					intent.putExtra("path", bi.path);
+					intent.putExtra("record", bi.record);
 					context.startActivity(intent);
 				}
 			});
