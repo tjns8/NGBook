@@ -3,6 +3,8 @@ package com.sswork.ngbook;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Looper;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 public class BookInfoAdapter extends BaseAdapter {
 	ArrayList<BookInfo> albis = null;
 	Context context = null;
+	RecordDao recordDao=null;
 	static BookInfoAdapter bia=null;
 	public static BookInfoAdapter getBookInfoAdapter(Context context){
 		if(null==bia){
@@ -26,9 +29,15 @@ public class BookInfoAdapter extends BaseAdapter {
 	}
 	private BookInfoAdapter(Context context) {
 		// TODO Auto-generated constructor stub
+		SQLiteOpenHelper helper=new DaoMaster.DevOpenHelper(context, "bookinfo-db", null);
+		DaoMaster daoMaster=new DaoMaster(helper.getWritableDatabase());
+		DaoSession daoSession=daoMaster.newSession();
+		recordDao=daoSession.getRecordDao();
 		albis = new ArrayList<BookInfo>();
 		albis.add(new BookInfo());
-		albis.add(new BookInfo());
+		for(Record record:recordDao.loadAll()){
+			albis.add(new BookInfo(record));
+		}
 		this.context = context;
 	}
 
@@ -83,6 +92,12 @@ public class BookInfoAdapter extends BaseAdapter {
 		Log.i("bia", "add new bi");
 		BookInfo bookInfo = new BookInfo(path);
 		albis.add(bookInfo);
+		Record record=new Record();
+		record.setBookName(bookInfo.name);
+		record.setPath(bookInfo.path);
+		record.setOldTime(System.currentTimeMillis());
+		record.setRecord("0");
+		recordDao.insert(record);
 		notifyDataSetChanged();
 	}
 
